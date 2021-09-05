@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/drawable/editext_bg.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/drawable/ic_add.xml" value="0.22552083333333334" />
-        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/activity_add_user.xml" value="0.209375" />
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/drawable/image_placeholder.xml" value="1.125" />
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/drawable/uploadnutton_design.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/activity_add_user.xml" value="0.18" />
         <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/activity_login.xml" value="0.209375" />
-        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/activity_main.xml" value="0.1953125" />
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/activity_rehistation.xml" value="0.209375" />
-        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/user_iteam.xml" value="0.209375" />
+        <entry key="..\:/Users/SAJIB ROY/AndroidStudioProjects/FirebaseKotlin2/app/src/main/res/layout/user_iteam.xml" value="0.2" />
       </map>
     </option>
   </component>

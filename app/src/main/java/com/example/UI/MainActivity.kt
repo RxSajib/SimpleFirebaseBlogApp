@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         button = findViewById(R.id.AddButtonID)
         button.setOnClickListener {
-            val intent = Intent(this, AddUser::class.java)
+            val intent = Intent(this, AddBlog::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
@@ -52,9 +52,8 @@ class MainActivity : AppCompatActivity() {
 
     fun getdata_toserver(){
 
-        var query = database.orderByChild("UserID")
 
-        query.addValueEventListener(object  : ValueEventListener{
+        database.addValueEventListener(object  : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 mydata.clear()
@@ -68,7 +67,6 @@ class MainActivity : AppCompatActivity() {
 
                         adapter.adduser(mydata)
                     }
-
 
                     recylerview.adapter = adapter
                     adapter.notifyDataSetChanged()

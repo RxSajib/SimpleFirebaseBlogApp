@@ -6,10 +6,10 @@ class Constant {
     companion object{
         var Username : String = "UserName"
         var UserEmail: String = "UserEmail"
-        var UserID : String = "UserID"
-
-
+        var Details : String = "Details"
         val User : String = "User"
+        var Timestamp : String  = "Timestamp"
+        var Image : String = "Image"
     }
 
 }

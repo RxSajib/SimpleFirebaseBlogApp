@@ -15,7 +15,7 @@
             android:name="com.example.UI.MainActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.UI.AddUser"
+            android:name="com.example.UI.AddBlog"
             android:exported="true" />
 
         <activity android:name="com.example.UI.Rehistation"/>

@@ -19,13 +19,13 @@ class UserPOST {
         data = MutableLiveData()
     }
 
-    fun uploaddata( name : String, email : String, id : String) : LiveData<Boolean>{
+    fun uploaddata( name : String, email : String, Details : String) : LiveData<Boolean>{
 
         var timestamp = System.currentTimeMillis()
         var map = HashMap<String, Any>()
         map.put(Constant.Username, name)
         map.put(Constant.UserEmail, email)
-        map.put(Constant.UserID, id)
+        map.put(Constant.Details, Details)
 
         database.child(Constant.User).child(timestamp.toString())
             .updateChildren(map)

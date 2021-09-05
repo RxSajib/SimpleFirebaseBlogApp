@@ -3,9 +3,11 @@ package com.example.firebasekotlin
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Model.User
+import com.squareup.picasso.Picasso
 
 class Adapter : RecyclerView.Adapter<UserHolder>() {
 
@@ -22,9 +24,17 @@ class Adapter : RecyclerView.Adapter<UserHolder>() {
     }
 
     override fun onBindViewHolder(holder: UserHolder, position: Int) {
+        holder.image.visibility = View.GONE
+
         holder.email.setText(userlis.get(position).UserEmail)
         holder.name.setText(userlis.get(position).UserName)
-        holder.id.setText(userlis.get(position).UserID.toString())
+        holder.id.setText(userlis.get(position).Details.toString())
+
+
+        if(userlis.get(position).Image != null){
+            holder.image.visibility = View.VISIBLE
+            Picasso.get().load(userlis.get(position).Image).into(holder.image)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -42,4 +52,5 @@ class UserHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var name  = itemView.findViewById<TextView>(R.id.UserName)
     var email = itemView.findViewById<TextView>(R.id.UserEmail)
     var id = itemView.findViewById<TextView>(R.id.UserID)
+    var image = itemView.findViewById<ImageView>(R.id.Image)
 }

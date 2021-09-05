@@ -1,11 +1,11 @@
 package com.example.UI
 
 import android.app.ProgressDialog
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.Model.Constant
@@ -13,16 +13,22 @@ import com.example.firebasekotlin.R
 import com.example.firebasekotlin.ViewModel.ViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.makeramen.roundedimageview.RoundedImageView
 
-class AddUser : AppCompatActivity() {
+private const val ImageCode = 200
+class AddBlog : AppCompatActivity() {
 
     private lateinit var email : EditText
     private lateinit var username : EditText
     private lateinit var userid : EditText
-    private lateinit var savebutton : Button
+    private lateinit var savebutton : RelativeLayout
     private lateinit var progressDialog: ProgressDialog
     private lateinit var database : DatabaseReference
     private lateinit var viewModel: ViewModel
+    private lateinit var image : RoundedImageView
+    private lateinit var imagestores : FirebaseStorage
+    private  var ImageUri : String ?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +40,10 @@ class AddUser : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         database = FirebaseDatabase.getInstance().reference.child(Constant.User)
 
-        progressDialog.show()
+      //  progressDialog.show()
 
 
+        /*
         viewModel.setdata("xxx", "xxx", "xxx")
 
             .observe(this, Observer {
@@ -50,6 +57,7 @@ class AddUser : AppCompatActivity() {
                 }
             })
 
+        */
 
 
         init_view()
@@ -57,6 +65,8 @@ class AddUser : AppCompatActivity() {
     }
 
     fun init_view(){
+        imagestores = FirebaseStorage.getInstance()
+        image = findViewById(R.id.PickImage)
         email = findViewById(R.id.EmailInput)
         username = findViewById(R.id.UserNameInput)
         userid = findViewById(R.id.IDInput)
@@ -66,7 +76,7 @@ class AddUser : AppCompatActivity() {
         savebutton.setOnClickListener {
             var emailtext = email.text.toString().trim()
             var usernametext = username.text.toString().trim()
-            var useridtext = userid.text.toString().trim()
+            var details = userid.text.toString().trim()
 
             progressDialog.setMessage("Please wait")
 
@@ -75,7 +85,7 @@ class AddUser : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Email require", Toast.LENGTH_LONG).show()
             }else if(usernametext.isEmpty()){
                 Toast.makeText(applicationContext, "Username require", Toast.LENGTH_LONG).show()
-            }else if(useridtext.isEmpty()){
+            }else if(details.isEmpty()){
                 Toast.makeText(applicationContext, "UserID require", Toast.LENGTH_LONG).show()
             }
 
@@ -86,7 +96,14 @@ class AddUser : AppCompatActivity() {
                 var map = HashMap<String, Any>()
                 map.put(Constant.Username, usernametext)
                 map.put(Constant.UserEmail, emailtext)
-                map.put(Constant.UserID, useridtext)
+                map.put(Constant.Details, details)
+                map.put(Constant.Timestamp, timestamp)
+
+                if(ImageUri != null){
+                    map.put(Constant.Image, ImageUri!!)
+                }
+
+
 
                 database.child(timestamp.toString())
                     .updateChildren(map)
@@ -103,6 +120,35 @@ class AddUser : AppCompatActivity() {
                         progressDialog.dismiss()
                     }
             }
+        }
+
+        image.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.setType("image/*")
+            startActivityForResult(intent, ImageCode)
+        }
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == ImageCode || resultCode == RESULT_OK){
+            progressDialog.show()
+            var uri = data?.data as Uri
+
+            image.setImageURI(uri)
+            viewModel.uploadimage(uri).observe(this, Observer {
+                if(it != null){
+                    progressDialog.dismiss()
+                    ImageUri = it
+                    Toast.makeText(applicationContext, "image upload success", Toast.LENGTH_LONG).show()
+
+                }else{
+                    progressDialog.dismiss()
+                }
+            })
         }
     }
 }
