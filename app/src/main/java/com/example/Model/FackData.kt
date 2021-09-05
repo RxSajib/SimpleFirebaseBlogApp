@@ -1,4 +1,6 @@
-package com.example.firebasekotlin
+package com.example.Model
+
+import com.example.Model.User
 
 class FackData {
 
@@ -9,11 +11,11 @@ class FackData {
             val data = ArrayList<User>()
 
             data.add(
-                User("Sajib", "sajibroy206@gmail.com", 11)
+                User("Sajib", "sajibroy206@gmail.com", "11")
             )
 
             data.add(
-                User("Rajib", "rajib@gmail.com", 25)
+                User("Rajib", "rajib@gmail.com", "11")
             )
 
 

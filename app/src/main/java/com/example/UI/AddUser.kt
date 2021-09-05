@@ -1,4 +1,4 @@
-package com.example.firebasekotlin
+package com.example.UI
 
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.Model.Constant
+import com.example.firebasekotlin.R
+import com.example.firebasekotlin.ViewModel.ViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -17,14 +22,33 @@ class AddUser : AppCompatActivity() {
     private lateinit var savebutton : Button
     private lateinit var progressDialog: ProgressDialog
     private lateinit var database : DatabaseReference
+    private lateinit var viewModel: ViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
 
+        viewModel = ViewModelProvider(this).get(ViewModel::class.java)
 
         progressDialog = ProgressDialog(this)
         database = FirebaseDatabase.getInstance().reference.child(Constant.User)
+
+        progressDialog.show()
+
+
+        viewModel.setdata("xxx", "xxx", "xxx")
+
+            .observe(this, Observer {
+                if(it == true){
+                    progressDialog.dismiss()
+                    Toast.makeText(applicationContext, "success upload", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    progressDialog.dismiss()
+                    Toast.makeText(applicationContext, "error upload data", Toast.LENGTH_LONG).show()
+                }
+            })
 
 
 
@@ -67,6 +91,12 @@ class AddUser : AppCompatActivity() {
                 database.child(timestamp.toString())
                     .updateChildren(map)
                     .addOnCompleteListener {
+                        progressDialog.dismiss()
+                        email.setText(null)
+                        username.setText(null)
+                        userid.setText(null)
+
+                        Toast.makeText(applicationContext, "Data is added", Toast.LENGTH_LONG).show()
 
                     }.addOnFailureListener {
                         Toast.makeText(applicationContext, it.message.toString(), Toast.LENGTH_LONG).show()
@@ -76,3 +106,4 @@ class AddUser : AppCompatActivity() {
         }
     }
 }
+

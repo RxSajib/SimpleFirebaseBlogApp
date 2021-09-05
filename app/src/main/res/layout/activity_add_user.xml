@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".AddUser">
+    tools:context="com.example.UI.AddUser">
 
 
     <EditText

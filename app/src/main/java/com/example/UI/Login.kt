@@ -1,4 +1,4 @@
-package com.example.firebasekotlin
+package com.example.UI
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.firebasekotlin.R
 import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {

@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Model.User
 
 class Adapter : RecyclerView.Adapter<UserHolder>() {
 
-     lateinit var userlis : ArrayList<User>
+      var userlis : List<User> = ArrayList()
 
      fun adduser(mylis : ArrayList<User>){
          userlis  = mylis

@@ -1,8 +1,8 @@
-package com.example.firebasekotlin
+package com.example.Model
 
 data class User(
 
     var UserName : String ?= null,
     var UserEmail : String ?= null,
-    var UserID : Int ?= null
+    var UserID : String ?= null
 )
