@@ -40,24 +40,6 @@ class AddBlog : AppCompatActivity() {
         progressDialog = ProgressDialog(this)
         database = FirebaseDatabase.getInstance().reference.child(Constant.User)
 
-      //  progressDialog.show()
-
-
-        /*
-        viewModel.setdata("xxx", "xxx", "xxx")
-
-            .observe(this, Observer {
-                if(it == true){
-                    progressDialog.dismiss()
-                    Toast.makeText(applicationContext, "success upload", Toast.LENGTH_LONG).show()
-                }
-                else{
-                    progressDialog.dismiss()
-                    Toast.makeText(applicationContext, "error upload data", Toast.LENGTH_LONG).show()
-                }
-            })
-
-        */
 
 
         init_view()
